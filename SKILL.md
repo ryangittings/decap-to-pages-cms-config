@@ -33,8 +33,8 @@ Convert [Decap CMS](https://decapcms.org/docs/intro/) `config.yml` to [Pages CMS
    - **Required attributes:** Decap defaults fields to required unless `required: false`. When converting, explicitly set `required:` so validation is clear: for identifier/primary fields (e.g. `title` when used as `view.primary`), slug-derived fields, and main body set `required: true`; for optional meta, navigation, images, captions, etc. set `required: false`. Pages uses `required: true` to block saving when empty; omit or `required: false` for optional fields.
    - Decap `default` → Pages `default`.
    - Decap `pattern: [regex, message]` → Pages `pattern: { regex: '...', message: '...' }`.
-   - Decap `hint` → Pages `description`.
-   - **Date with time:** Decap `widget: datetime` (or content like `2025-05-23T17:34:57.853Z`) → Pages `type: date` with `options: { time: true }`. Omit `options.time` for date-only. If content uses full ISO with seconds/milliseconds/UTC (e.g. `2025-05-23T17:34:57.853Z`), add `format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"` (date-fns format); default with time is only `yyyy-MM-dd'T'HH:mm` and won’t match. You may need to check the markdown file to make sure the format matches.
+   - Decap `hint` → Pages `description`. Make sure these have quote marks to prevent any errors when using colons.
+   - **Date with time:** Decap `widget: datetime` (or content like `2025-05-23T17:34:57.853Z`) → Pages `type: date` with `options: { time: true }`. Omit `options.time` for date-only. If content uses full ISO with seconds/milliseconds/UTC (e.g. `2025-05-23T17:34:57.853Z`), add `format: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"` (date-fns format); default with time is only `yyyy-MM-dd'T'HH:mm` and won’t match. You may need to check the markdown file to make sure the format matches. The format needs to be within the options key.
 
 5. **Blocks (list with types)**
    - Decap: `widget: list` with `types: [ { label, name, widget: object, fields: [...] }, ... ]` (block-style list).
